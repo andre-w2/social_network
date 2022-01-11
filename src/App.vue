@@ -1,5 +1,6 @@
 <template>
-   TEST!!!
+   TEST!
+   <router-view></router-view>
 </template>
 
 
