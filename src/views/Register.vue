@@ -54,8 +54,10 @@ export default {
             this.$store.dispatch('register', {
                 email: 'authJS@gmail.com',
                 name: 'Alex21',
-                nickname: 'Retro_music',
-                pass: 'sdfsd12fs'
+                username: 'Retro_smusic',
+                password: 'sdfsd12fs'
+            }).then(user => {
+                console.log(user)
             })
         }
     }
