@@ -1,4 +1,5 @@
 import authApi from '@/api/auth.js'
+import {setItem} from '@/helpers/localStorage'
 
 const state = {
     isSubmutting: false,
@@ -30,7 +31,8 @@ const actions = {
                 .then(response => {
                     if (response.data.success === 1) {
                         context.commit('registerSuccess', response.data.message)
-                        resolve(response.data)
+                        setItem('Token', response.data.message)
+                        resolve()
                     } else {
                         throw new Error(response.data.message)
                     }

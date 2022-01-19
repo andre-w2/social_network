@@ -20,5 +20,5 @@ yarn build
 yarn lint
 ```
 
-
-#### Проект делается в целях обучение
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
