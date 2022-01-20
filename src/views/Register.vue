@@ -10,6 +10,13 @@
                                 Зарегистрируйтесь, чтобы смотреть фото ваших друзей.
                             </p>
                         </div>
+                        <p  v-if="validationErrors" class="fw-bold text-danger">
+                            <ul>
+                                 <li>
+                                    <mvc-validation-errors :validation-errors="validationErrors" />
+                                </li>
+                            </ul>
+                        </p>
                         <div class="form-floating mb-3">
                             <input class="form-control" placeholder="Email" type="email" v-model="email" />
                             <label>эл. адрес</label>
@@ -42,9 +49,14 @@
         </div>
     </section>
 </template>
+
 <script>
+import MvcValidationErrors from '@/components/ValidationErrors'
 export default {
     name: 'MvcRegister',
+    components: {
+        MvcValidationErrors
+    },
     data() {
         return {
             email: '',
@@ -56,6 +68,9 @@ export default {
     computed: {
         isSubmutting() {
             return this.$store.state.auth.isSubmutting
+        },
+        validationErrors() {
+            return this.$store.state.auth.validationErrors
         }
     },
     methods: {
