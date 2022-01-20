@@ -31,15 +31,18 @@ const actions = {
                 .then(response => {
                     if (response.data.success === 1) {
                         context.commit('registerSuccess', response.data.message)
-                        setItem('Token', response.data.message)
+                        setItem('Token', response.data.message.token)
                         resolve()
                     } else {
-                        throw new Error(response.data.message)
+                        if (response.data.message) {
+                            throw new Error(response.data.message)
+                        }
                     }
                 })
                 .catch(error => {
                     const e = error.toString().replace(/Error: /g, '')
                     context.commit('registerFailure', e)
+                    console.log(error)
                 })
         })
     }
