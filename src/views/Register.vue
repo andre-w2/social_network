@@ -5,7 +5,7 @@
                 <div style="max-width:420px;">
                     <form @submit.prevent="onSubmit" class="bg-white border py-4 px-5" method="post">
                         <div class="text-center mb-3">
-                            <img src="https://pngimg.com/uploads/instagram/instagram_PNG5.png" class="text-secondary mb-2 size" />
+                            <img src="../assets/logo.png" class="text-secondary mb-2 size" />
                             <p class="text-muted fw-bold">
                                 Зарегистрируйтесь, чтобы смотреть фото ваших друзей.
                             </p>
@@ -75,7 +75,6 @@ export default {
 
 <style scoped>
 .size {
-    width: 300px;
-    height: 100px;
+    height: 130px;
 }
 </style>
