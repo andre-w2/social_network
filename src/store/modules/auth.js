@@ -8,29 +8,39 @@ const state = {
     isLoggedIn: null
 }
 
+export const mutationsTypes = {
+    registerStart: '[auth] registerStart',
+    registerSuccess: '[auth] registerSuccess',
+    registerFailure: '[auth] registerFailure'
+}
+
+export const actionsTypes = {
+    register: '[auth] register'
+}
+
 const mutations = {
-    registerStart(state) {
+    [mutationsTypes.registerStart](state) {
         state.isSubmutting = true
         state.validationErrors = null
     },
-    registerSuccess(state, payload) {
+    [mutationsTypes.registerSuccess](state, payload) {
         state.isSubmutting = false
         state.currentUser = payload
     },
-    registerFailure(state, payload) {
+    [mutationsTypes.registerFailure](state, payload) {
         state.isSubmutting = false
         state.validationErrors = payload
     }
 }
 
 const actions = {
-    register(context, credentials) {
-        context.commit('registerStart')
+    [actionsTypes.register](context, credentials) {
+        context.commit(mutationsTypes.registerStart)
         return new Promise(resolve => {
             authApi.register(credentials)
                 .then(response => {
                     if (response.data.success === 1) {
-                        context.commit('registerSuccess', response.data.message)
+                        context.commit(mutationsTypes.registerSuccess, response.data.message)
                         setItem('Token', response.data.message.token)
                         resolve()
                     } else {
@@ -41,7 +51,7 @@ const actions = {
                 })
                 .catch(error => {
                     const e = error.toString().replace(/Error: /g, '')
-                    context.commit('registerFailure', e)
+                    context.commit(mutationsTypes.registerFailure, e)
                     console.log(error)
                 })
         })

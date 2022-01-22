@@ -52,6 +52,8 @@
 
 <script>
 import MvcValidationErrors from '@/components/ValidationErrors'
+import {actionsTypes} from '@/store/modules/auth'
+
 export default {
     name: 'MvcRegister',
     components: {
@@ -75,7 +77,7 @@ export default {
     },
     methods: {
         onSubmit() {
-            this.$store.dispatch('register', {
+            this.$store.dispatch(actionsTypes.register, {
                 email: this.email,
                 name: this.name,
                 username: this.username,
