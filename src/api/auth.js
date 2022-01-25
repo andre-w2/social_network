@@ -4,6 +4,11 @@ const register = credentials => {
 	return axios.post('/register', credentials)
 }
 
+const login = credentials => {
+	return axios.post('/auth', credentials)
+}
+
 export default {
-	register
+	register,
+	login
 }

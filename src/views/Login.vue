@@ -7,7 +7,7 @@
                         <div class="text-center mb-3">
                             <img src="../assets/logo.png" class="text-secondary mb-2 size" />
                             <p class="text-muted fw-bold">
-                                Зарегистрируйтесь, чтобы смотреть фото ваших друзей.
+                                Войдите, чтобы смотреть фото ваших друзей.
                             </p>
                         </div>
                         <p  v-if="validationErrors" class="fw-bold text-danger">
@@ -22,14 +22,6 @@
                             <label>эл. адрес</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" placeholder="Name" type="text" v-model="name" />
-                            <label>Имя и фамилия</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" placeholder="Usename" type="text" v-model="username" />
-                            <label>Имя пользователя</label>
-                        </div>
-                        <div class="form-floating mb-3">
                             <input class="form-control" placeholder="password" type="password" v-model="pass" />
                             <label>Пароль</label>
                         </div>
@@ -41,7 +33,7 @@
                     </form>
                     <div class="bg-white py-4 px-5 text-center border mt-4">
                         <p class="m-0">
-                            Есть аккаунт? <router-link :to="{name: 'login'}">Вход</router-link>
+                            Нет аккаунта? <router-link :to="{name: 'register'}">Создать</router-link>
                         </p>
                     </div>
                 </div>
@@ -56,15 +48,13 @@ import MvcValidationErrors from '@/components/ValidationErrors'
 import {actionsTypes} from '@/store/modules/auth'
 
 export default {
-    name: 'MvcRegister',
+    name: 'MvcLogin',
     components: {
         MvcValidationErrors
     },
     data() {
         return {
             email: '',
-            name: '',
-            username: '',
             pass: ''
         }
     },
@@ -76,10 +66,8 @@ export default {
     },
     methods: {
         onSubmit() {
-            this.$store.dispatch(actionsTypes.register, {
+            this.$store.dispatch(actionsTypes.login, {
                 email: this.email,
-                name: this.name,
-                username: this.username,
                 password: this.pass
             }).then(() => {
                 this.$router.push({name: 'home'})
